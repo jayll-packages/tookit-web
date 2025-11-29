@@ -197,72 +197,74 @@ export default function PromptForgeClient() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
         <div className="space-y-8">
-          <Card className={cn(neumorphicCard, "border-none")}>
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-foreground/80">
-                Prompt Template
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Textarea
-                value={template}
-                onChange={(e) => setTemplate(e.target.value)}
-                placeholder="your task is {{task}}..."
-                className={cn(neumorphicInput, "min-h-[150px] text-base")}
-              />
-            </CardContent>
-          </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className={cn(neumorphicCard, "border-none")}>
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold text-foreground/80">
+                  Prompt Template
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Textarea
+                  value={template}
+                  onChange={(e) => setTemplate(e.target.value)}
+                  placeholder="your task is {{task}}..."
+                  className={cn(neumorphicInput, "min-h-[150px] text-base")}
+                />
+              </CardContent>
+            </Card>
 
-          <Card className={cn(neumorphicCard, "border-none")}>
-            <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-2xl font-semibold text-foreground/80">
-                Variables
-              </CardTitle>
-              <NeumorphicButton size="sm" onClick={addVariable}>
-                <Plus className="mr-2 h-4 w-4" /> Add
-              </NeumorphicButton>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {variables.map((variable, index) => (
-                <div key={variable.id} className="flex items-center gap-2">
-                  <Input
-                    placeholder="Key"
-                    value={variable.key}
-                    onChange={(e) =>
-                      updateVariable(variable.id, "key", e.target.value)
-                    }
-                    className={cn(neumorphicInput)}
-                    aria-label={`Variable key ${index + 1}`}
-                  />
-                  <Input
-                    placeholder="Value"
-                    value={variable.value}
-                    onChange={(e) =>
-                      updateVariable(variable.id, "value", e.target.value)
-                    }
-                    className={cn(neumorphicInput)}
-                    aria-label={`Variable value ${index + 1}`}
-                  />
-                  <NeumorphicButton
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => deleteVariable(variable.id)}
-                    className="aspect-square h-10 w-10 shrink-0"
-                     aria-label={`Delete variable ${index + 1}`}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </NeumorphicButton>
-                </div>
-              ))}
-              {variables.length === 0 && (
-                <p className="text-center text-muted-foreground pt-4">
-                  No variables defined. Click 'Add' to create one.
-                </p>
-              )}
-            </CardContent>
-          </Card>
+            <Card className={cn(neumorphicCard, "border-none")}>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-2xl font-semibold text-foreground/80">
+                  Variables
+                </CardTitle>
+                <NeumorphicButton size="sm" onClick={addVariable}>
+                  <Plus className="mr-2 h-4 w-4" /> Add
+                </NeumorphicButton>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {variables.map((variable, index) => (
+                  <div key={variable.id} className="flex items-center gap-2">
+                    <Input
+                      placeholder="Key"
+                      value={variable.key}
+                      onChange={(e) =>
+                        updateVariable(variable.id, "key", e.target.value)
+                      }
+                      className={cn(neumorphicInput)}
+                      aria-label={`Variable key ${index + 1}`}
+                    />
+                    <Input
+                      placeholder="Value"
+                      value={variable.value}
+                      onChange={(e) =>
+                        updateVariable(variable.id, "value", e.target.value)
+                      }
+                      className={cn(neumorphicInput)}
+                      aria-label={`Variable value ${index + 1}`}
+                    />
+                    <NeumorphicButton
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => deleteVariable(variable.id)}
+                      className="aspect-square h-10 w-10 shrink-0"
+                       aria-label={`Delete variable ${index + 1}`}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </NeumorphicButton>
+                  </div>
+                ))}
+                {variables.length === 0 && (
+                  <p className="text-center text-muted-foreground pt-4">
+                    No variables defined. Click 'Add' to create one.
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         <div className="lg:sticky top-8 self-start">
