@@ -248,25 +248,25 @@ export default function PromptForgeClient() {
       </header>
 
       <main className="flex-grow grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
-        <Tabs defaultValue="template" className="w-full">
+        <Tabs defaultValue="template" className="w-full flex flex-col">
           <TabsList className="grid w-full grid-cols-2 bg-transparent mb-4 p-0 gap-4">
             <TabsTrigger value="template" className="bg-card border-2 border-primary/50 rounded-none text-primary data-[state=active]:bg-primary data-[state=active]:text-background data-[state=active]:shadow-[0_0_15px] data-[state=active]:shadow-primary font-headline uppercase">Prompt Template</TabsTrigger>
             <TabsTrigger value="variables" className="bg-card border-2 border-primary/50 rounded-none text-primary data-[state=active]:bg-primary data-[state=active]:text-background data-[state=active]:shadow-[0_0_15px] data-[state=active]:shadow-primary font-headline uppercase">Variables</TabsTrigger>
           </TabsList>
-          <TabsContent value="template">
-            <Card className={cn(retroCard, "border-primary/50 shadow-primary/10")}>
-              <CardContent className="p-6">
+          <TabsContent value="template" className="flex-grow">
+            <Card className={cn(retroCard, "border-primary/50 shadow-primary/10 h-full flex flex-col")}>
+              <CardContent className="p-6 flex-grow">
                 <Textarea
                   value={template}
                   onChange={(e) => setTemplate(e.target.value)}
                   placeholder="your task is {{task}}..."
-                  className={cn(retroInput, "min-h-[300px] lg:min-h-[calc(100vh-420px)] text-lg")}
+                  className={cn(retroInput, "h-full w-full text-lg resize-none")}
                 />
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="variables">
-            <Card className={cn(retroCard, "border-primary/50 shadow-primary/10")}>
+          <TabsContent value="variables" className="flex-grow">
+            <Card className={cn(retroCard, "border-primary/50 shadow-primary/10 h-full flex flex-col")}>
               <CardHeader className="flex flex-row items-center justify-between p-4">
                 <CardTitle className="text-2xl font-headline text-primary">
                   Variables
@@ -275,7 +275,7 @@ export default function PromptForgeClient() {
                   <Plus className="mr-2 h-4 w-4" /> Add
                 </RetroButton>
               </CardHeader>
-              <CardContent className="p-4 pt-0 space-y-2 max-h-[calc(100vh-490px)] overflow-y-auto pr-4">
+              <CardContent className="p-4 pt-0 space-y-2 overflow-y-auto pr-4 flex-grow">
                 {variables.map((variable, index) => (
                   <div
                     key={variable.id}
@@ -330,8 +330,8 @@ export default function PromptForgeClient() {
           </TabsContent>
         </Tabs>
 
-        <div className="lg:sticky top-8 self-start">
-          <Card className={cn(retroCard)}>
+        <div className="flex flex-col">
+          <Card className={cn(retroCard, "flex-grow flex flex-col")}>
             <CardHeader className="flex flex-row items-center justify-between p-4">
               <CardTitle className="text-2xl font-headline text-accent">
                 Rendered Prompt
@@ -340,11 +340,11 @@ export default function PromptForgeClient() {
                 <Copy className="mr-2 h-4 w-4" /> Copy
               </RetroButton>
             </CardHeader>
-            <CardContent className="p-4 pt-0">
+            <CardContent className="p-4 pt-0 flex-grow">
               <div
                 className={cn(
                   retroInput,
-                  "min-h-[300px] lg:min-h-[calc(100vh-290px)] w-full whitespace-pre-wrap rounded-none p-4 text-lg"
+                  "w-full h-full whitespace-pre-wrap rounded-none p-4 text-lg"
                 )}
               >
                 {renderedPrompt}
